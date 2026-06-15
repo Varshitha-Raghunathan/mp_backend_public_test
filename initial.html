@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Input and Store</title>
+</head>
+<body>
+    <label for="player1">Enter your name:</label>
+    <input type="text" id="player1" placeholder="Type here">
+    <label for="player2">Enter your name:</label>
+    <input type="text" id="player2" placeholder="Type here">
+    <label for="player3">Enter your name:</label>
+    <input type="text" id="player3" placeholder="Type here">
+    <label for="player4">Enter your name:</label>
+    <input type="text" id="player4" placeholder="Type here">
+    <label for="player5">Enter your name:</label>
+    <input type="text" id="player5" placeholder="Type here">
+    <button id="saveBtn">Save</button>
+
+    <script>
+        // Object to store user data
+        let userData = {};
+
+        // Get references to HTML elements
+        const player1 = document.getElementById("player1");
+        const player2 = document.getElementById("player2");
+        const player3 = document.getElementById("player3");
+        const player4 = document.getElementById("player4");
+        const player5 = document.getElementById("player5");
+        const saveBtn = document.getElementById("saveBtn");
+
+        // Add click event listener
+        saveBtn.addEventListener("click", function() {
+            let nameValue1 = player1.value.trim();
+
+            if (nameValue1) {
+                userData.player1 = nameValue1; // Store in object
+                console.log("Stored Data:", userData);
+                
+            } 
+            let nameValue2 = player2.value.trim();
+
+            if (nameValue2) {
+                userData.player2 = nameValue2; // Store in object
+                console.log("Stored Data:", userData);
+               
+            } 
+            let nameValue3 = player3.value.trim();
+
+            if (nameValue3) {
+                userData.player3 = nameValue3; // Store in object
+                console.log("Stored Data:", userData);
+               
+            } 
+            let nameValue4 = player4.value.trim();
+
+            if (nameValue4) {
+                userData.player4 = nameValue4; // Store in object
+                console.log("Stored Data:", userData);
+                
+            } 
+            let nameValue5 = player5.value.trim();
+
+            if (nameValue5) {
+                userData.player5 = nameValue5; // Store in object
+                console.log("Stored Data:", userData);
+            
+            } 
+        });
+    </script>
+</body>
+</html>
+
