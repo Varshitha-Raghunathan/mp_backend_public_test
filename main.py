@@ -19,6 +19,8 @@ class Trade(BaseModel):
     player1_id:int
     player2_id:int
     acceptance:bool
+class Lobby(BaseModel):
+    player_name:str
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -40,20 +42,25 @@ app.add_middleware(
 )
 import some
 import game_copy
+import lobby
+from collections import defaultdict
 
 GAMES={}
 PLAYERS=[]
+LOBBBIES={}
 current_player_id=0
 current_object_id="NA"
 game_id=1
+lobby_id=1
 
 @app.get("/")
 async def read_server():
     return {"message":"Server is running"}
 
-@app.post("/start_game")
-async def create_game(gc:GameClass):
-    game_instance=game_copy.Game(gc.players)
+@app.post("/start_game/{lobby_id}")
+async def create_game(lobby_id:int):
+    players=LOBBBIES[lobby_id]._players()
+    game_instance=game_copy.Game(players)
     for player in game_instance.players:
         PLAYERS.append(player)
     global game_id
@@ -63,6 +70,28 @@ async def create_game(gc:GameClass):
     game_id=game_id+1
     state=game_instance.get_state()
     return {"STATE":state,"game_id":gid}
+
+
+@app.get("/create_lobbies")
+async def create_lobbies():
+    lobby_instance=lobby.Lobby()
+    global lobby_id
+    LOBBBIES[lobby_id]=lobby_instance
+    current_lobby_id=lobby_id
+    lobby_id+=1
+    return {"lobby_id":current_lobby_id}
+@app.post("/join_lobby/{lobby_id}")
+async def join_lobby(lobby_id:int,player:Lobby):
+    lobby_i=LOBBBIES[lobby_id]
+    lobby_i.add_player(player.player_name)
+    return {"added"}
+
+@app.get("/get_lobbies/{lobby_id}")
+async def get_lobby(lobby_id:int):
+    lobby_i=LOBBBIES[lobby_id]
+    players=lobby_i._players()
+    return {"players":players}
+
 
 
 
