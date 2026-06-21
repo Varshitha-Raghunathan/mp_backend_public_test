@@ -57,7 +57,7 @@ lobby_id=1
 async def read_server():
     return {"message":"Server is running"}
 
-@app.post("/start_game/{lobby_id}")
+@app.get("/start_game/{lobby_id}")
 async def create_game(lobby_id:int):
     players=LOBBBIES[lobby_id]._players()
     game_instance=game_copy.Game(players)
