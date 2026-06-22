@@ -4,6 +4,7 @@ class Lobby:
         
         self.players=[]
         self.started=False
+        self.game_ii=None
             
     def add_player(self,name):
         self.players.append(name)

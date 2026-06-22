@@ -57,6 +57,8 @@ lobby_id=1
 async def read_server():
     return {"message":"Server is running"}
 
+
+
 @app.get("/start_game/{lobby_id}")
 async def create_game(lobby_id:int):
     players=LOBBBIES[lobby_id]._players()
@@ -67,13 +69,18 @@ async def create_game(lobby_id:int):
     GAMES[game_id]=game_instance
     print(GAMES)
     gid=game_id
+    LOBBBIES[lobby_id].started=True
+    LOBBBIES[lobby_id].game_ii=game_id
     game_id=game_id+1
     state=game_instance.get_state()
     return {"STATE":state,"game_id":gid}
-@app.post("/join_game/{game_id}")
+
+
+
+@app.get("/join_game/{game_id}")
 async def join_game(game_id:int):
     game=GAMES[game_id]
-    return {"players":game.players}
+    return {"m":"m"}
 
 
 @app.get("/create_lobbies")
@@ -97,7 +104,13 @@ async def get_lobby(lobby_id:int):
     return {"players":players}
 
 
-
+@app.get("/lobby_status/{lobby_id}")
+async def lobby_status(lobby_id:int):
+    lobby_i=LOBBBIES[lobby_id]
+    return {
+        "started":lobby_i.started,
+        "game_id":lobby_i.game_id
+    }
 
 @app.get("/turn/{game_id}")
 async def your_turn(game_id:int):
@@ -121,6 +134,7 @@ async def buy_property(game_id:int,buy_decision:BD):
         return log
     else:
         return "no need to buy"
+
 @app.get("/get_state/{game_id}")
 async def get_the_state(game_id:int):
     game_instance=GAMES[game_id]
