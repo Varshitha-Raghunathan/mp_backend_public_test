@@ -70,6 +70,10 @@ async def create_game(lobby_id:int):
     game_id=game_id+1
     state=game_instance.get_state()
     return {"STATE":state,"game_id":gid}
+@app.post("/join_game/{game_id}")
+async def join_game(game_id:int):
+    game=GAMES[game_id]
+    return {"players":game.players}
 
 
 @app.get("/create_lobbies")
