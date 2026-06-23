@@ -109,7 +109,7 @@ async def lobby_status(lobby_id:int):
     lobby_i=LOBBBIES[lobby_id]
     return {
         "started":lobby_i.started,
-        "game_id":lobby_i.game_id
+        "game_id":lobby_i.game_ii
     }
 
 @app.get("/turn/{game_id}")
