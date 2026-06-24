@@ -23,7 +23,7 @@ class Lobby(BaseModel):
     player_name:str
 
 class TurnRequest(BaseModel):
-    player_name:str
+    player_id:int
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -121,7 +121,7 @@ async def your_turn(game_id:int,request:TurnRequest):
     global current_player_id
     global current_object_id
     game_instance=GAMES[game_id]
-    result=game_instance.turn(request.player_name)
+    result=game_instance.turn(request.player_id)
     if result==False:
         return {"Turn":"Not yours"}
     current_player_id=result["player_id"]
@@ -151,8 +151,8 @@ async def get_the_state(game_id:int):
 @app.get("/current_player/{game_id}")
 async def get_player(game_id:int):
     global current_player_id
-    current_name=PLAYERS[current_player_id].name
-    return {'cn':current_name}
+    
+    return {'cn':current_player_id}
 
 @app.post("/get_house/{game_id}")
 async def get_the_house(game_id:int,city_id:city):
