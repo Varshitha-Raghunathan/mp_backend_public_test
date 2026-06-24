@@ -23,8 +23,9 @@ class Game:
             self.players.append(create_player(name))
         return self.players
     
-    def turn(self,buy_decision=True):
-            
+    def turn(self,player_name,buy_decision=True):
+            if self.current_player.name!=player_name:
+                return False
             no=some.roll_die()
             res=some.move(self.board,self.players[self.current_player],no)
             self.current_player=(self.current_player+1)%self.no_of_players
