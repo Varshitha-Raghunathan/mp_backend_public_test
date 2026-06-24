@@ -35,6 +35,8 @@ class Game:
             self.pending_state["player_id"]=res["player_id"]
             self.pending_state["object_id"]=res["object_id"]
             return res
+    def cp(self):
+        return self.players[self.current_player].id
     def buy_now(self,buy_decision=True):
         obj=some.object_tracker(self.pending_state["object_id"])
         player_print=""

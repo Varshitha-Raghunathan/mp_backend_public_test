@@ -148,11 +148,12 @@ async def get_the_state(game_id:int):
     for i in current_game_state:
         return_result[i["name"]]=i
     return return_result
+
 @app.get("/current_player/{game_id}")
-async def get_player(game_id:int):
-    global current_player_id
-    
-    return {'cn':current_player_id}
+async def get_player(game_id:int): 
+    game_instance=GAMES[game_id]
+    cpid=game_instance.cp()
+    return {'cn':cpid}
 
 @app.post("/get_house/{game_id}")
 async def get_the_house(game_id:int,city_id:city):
