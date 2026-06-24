@@ -24,7 +24,8 @@ class Game:
         return self.players
     
     def turn(self,player_id,buy_decision=True):
-            if self.current_player!=player_id:
+            
+            if self.players[self.current_player].id!=player_id:
                 return False
             no=some.roll_die()
             res=some.move(self.board,self.players[self.current_player],no)
