@@ -127,6 +127,8 @@ for var in cities:
 
 for city in cities:
   city.no_of_houses_built=0
+  city.bought=False
+  city.owner=None
 
 
 print("country",country_sets)
@@ -195,6 +197,14 @@ def board_create():
 
     for city in cities:
       city.no_of_houses_built=0
+      city.owner=None
+      city.bought=False
+    for airport in airports:
+      airport.bought=False
+      airport.owner=None
+    for company in companies:
+      company.bought=False
+      company.owner=None
     return {
 
         0: {"type": "start", "name": "GO"},
