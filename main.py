@@ -153,7 +153,7 @@ async def get_die(game_id:int):
 @app.get("/get_cp/{game_id}")
 async def get_cp(game_id:int):
     game_instance=GAMES[game_id]
-    current_player=game_instance.get_cpun()
+    current_player=game_instance.cpun()
     return {"cp":current_player}
 
 @app.get("/get_log/{game_id}")
