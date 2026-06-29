@@ -578,7 +578,8 @@ def move(board,player,no):
             "buy_decision":True,
             "object_id":actual_obj.id,
             "in_jail":False,
-            "name":player.name}
+            "name":player.name,
+            "log":player.name+"landed in unbought property"}
 
 def buy_b(actual_obj,player,buy_decision):
   
