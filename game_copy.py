@@ -41,7 +41,7 @@ class Game:
             self.log=res["log"]
             return res
     def cpun(self):
-        self.cpuuu=self.players[self.current_player].name
+        self.cpuuu=self.players[((self.current_player)-1)%self.no_of_players].name
         return self.cpuuu
         
     def cp(self):
