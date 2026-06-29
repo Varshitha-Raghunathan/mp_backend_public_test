@@ -16,7 +16,7 @@ class Game:
         self.pending_state=False
         self.pending_state={"buy_decision":False,"player_id":0,"obj_id":"NIL"}
         self.log=""
-        self.cp=""
+        self.cpuu=""
         self.die_value=""
         
     
@@ -40,9 +40,13 @@ class Game:
             self.pending_state["object_id"]=res["object_id"]
             self.log=res["log"]
             return res
+    def cpun(self):
+        self.cpuuu=self.players[self.current_player].name
+        return self.cpuuu
+        
     def cp(self):
-        self.cp=self.players[self.current_player].name
         return self.players[self.current_player].id
+    
     def die(self):
         return self.die_value
     def get_log(self):
