@@ -15,6 +15,7 @@ class Game:
         self.current_player=0
         self.pending_state=False
         self.pending_state={"buy_decision":False,"player_id":0,"obj_id":"NIL"}
+        self.log=""
         
     
     def create_players(self):
@@ -34,10 +35,14 @@ class Game:
             self.pending_state["buy_decision"]=res["buy_decision"]
             self.pending_state["player_id"]=res["player_id"]
             self.pending_state["object_id"]=res["object_id"]
+            self.log=res["log"]
             return res
     def cp(self):
         return self.players[self.current_player].id
+    def get_log(self):
+        return self.log
     def buy_now(self,buy_decision=True):
+
         obj=some.object_tracker(self.pending_state["object_id"])
         player_print=""
         for player in self.players:

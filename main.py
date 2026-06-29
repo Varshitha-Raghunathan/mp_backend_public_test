@@ -139,6 +139,13 @@ async def buy_property(game_id:int,buy_decision:BD):
         return log
     else:
         return "no need to buy"
+    
+@app.get("/get_log/{game_id}")
+async def get_log(game_id:int):
+    game_instance=GAMES[game_id]
+    current_log=game_instance.get_log()
+    return {"log":current_log}
+
 
 @app.get("/get_state/{game_id}")
 async def get_the_state(game_id:int):
