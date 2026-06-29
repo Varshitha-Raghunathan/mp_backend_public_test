@@ -50,6 +50,7 @@ class Game:
                 some.buy_b(obj,player,buy_decision)
                 player_print=player.name
         if buy_decision:
+            self.log=player_print+" bought "+obj.name
             return player_print+" bought "+obj.name
         return "property not bought"
 
