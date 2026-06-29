@@ -16,6 +16,8 @@ class Game:
         self.pending_state=False
         self.pending_state={"buy_decision":False,"player_id":0,"obj_id":"NIL"}
         self.log=""
+        self.cp=""
+        self.die_value=""
         
     
     def create_players(self):
@@ -29,6 +31,7 @@ class Game:
             if self.players[self.current_player].id!=player_id:
                 return False
             no=some.roll_die()
+            self.die_value=no
             res=some.move(self.board,self.players[self.current_player],no)
             self.current_player=(self.current_player+1)%self.no_of_players
             
@@ -38,7 +41,10 @@ class Game:
             self.log=res["log"]
             return res
     def cp(self):
+        self.cp=self.players[self.current_player].name
         return self.players[self.current_player].id
+    def die(self):
+        return self.die_value
     def get_log(self):
         return self.log
     def buy_now(self,buy_decision=True):
