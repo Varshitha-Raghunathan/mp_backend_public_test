@@ -140,23 +140,28 @@ async def buy_property(game_id:int,buy_decision:BD):
     else:
         return "no need to buy"
     
+
+@app.get("/get_die/{game_id}")
+async def get_die(game_id:int):
+    game_instance=GAMES[game_id]
+    current_no=game_instance.die()
+    return {"no":current_no}
+  
+
+
+
+@app.get("/get_cp/{game_id}")
+async def get_cp(game_id:int):
+    game_instance=GAMES[game_id]
+    current_player=game_instance.get_cpun()
+    return {"cp":current_player}
+
 @app.get("/get_log/{game_id}")
 async def get_log(game_id:int):
     game_instance=GAMES[game_id]
     current_log=game_instance.get_log()
     return {"log":current_log}
 
-@app.get("/get_cp/{game_id}")
-async def get_log(game_id:int):
-    game_instance=GAMES[game_id]
-    current_player=game_instance.get_cpun()
-    return {"cp":current_player}
-
-@app.get("/get_die/{game_id}")
-async def get_log(game_id:int):
-    game_instance=GAMES[game_id]
-    current_no=game_instance.die()
-    return {"no":current_no}
 
 @app.get("/get_state/{game_id}")
 async def get_the_state(game_id:int):
